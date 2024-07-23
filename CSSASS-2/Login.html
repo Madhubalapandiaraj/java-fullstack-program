@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background: url('img1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .login-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            width: 300px;
+            height: 60%;
+        }
+        .login-container img {
+            border-radius: 100%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        .login-container h2 {
+            margin-bottom: 30px;       
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 2px solid white;
+            background: transparent;
+            color: white;
+            font-size: 1em;
+        }
+        .login-container input[type="checkbox"] {
+            margin: 20px 0;
+        }
+        .login-container a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .login-container button {
+            background: #4CAF50;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .login-container button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="img2.jpg" alt="User Avatar">
+        <h2>LOGIN WINDOW</h2>
+        <input type="text" placeholder="Your Email Address" required>
+        <input type="password" placeholder="Your Password" required>
+        <div>
+            <input type="checkbox" id="terms">
+            <label for="terms">Agree With <a href="#">Terms & Condition</a></label>
+        </div>
+        <button type="submit">Login</button>
+    </div>
+</body>
+</html>
