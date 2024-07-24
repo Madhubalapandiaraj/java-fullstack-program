@@ -1,0 +1,28 @@
+
+<html>
+<head>
+    
+    <title>class</title>
+</head>
+<body>
+    <script>
+        class Student{
+            constructor(name,age,studies){
+                this.name=name;
+                this.age=age;
+                this.studies=studies;
+            }
+            display(){
+                document.write("<br>student name:"+this.name);
+                document.write("<br>student Age:"+this.age);
+                document.write("<br>student studies:"+this.studies);
+            }
+        }
+        var student1=new Student("raj",21,"cse");
+        student1.display();
+
+        var student2=new Student("kumar",22,"it");
+        student2.display();
+    </script>
+</body>
+</html>

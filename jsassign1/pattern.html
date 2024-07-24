@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Pattern</title>
+    <script>
+        function displayPattern() {
+            var rows = parseInt(document.getElementById("rows").value);
+            var pattern = '';
+            for (var i = 1; i <= rows; i++) {
+                for (var j = 1; j <= i; j++) {
+                    pattern += '* ';
+                }
+                pattern += '<br>';
+            }
+            document.getElementById("ResultDiv").innerHTML = pattern;
+        }
+    </script>
+</head>
+<body>
+    Enter the Number of Rows: <input type="text" id="rows"/>
+    <br><br>
+    <button onclick="displayPattern()">Display Pattern</button>
+    <br><br>
+    <div id="ResultDiv"></div>
+</body>
+</html>
