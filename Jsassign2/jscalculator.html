@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        .one {
+            border: 6px solid lightslategray;
+            height: 449px;
+            width: 296px;
+            background-color: lightslategray;
+            box-shadow: 50px;
+            border-radius: 3px;
+        }
+        .container {
+            border: 5px solid rgb(251, 238, 238);
+            width: 280px;
+            height: 40px;
+            margin-left: 3px;
+            margin-top: 10px;
+            font-size: xx-large;
+            background-color: white;
+            border-radius: 3px;
+            text-align: right;
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            height: 70px;
+            width: 70px;
+            font-size: x-large;
+            background-color: teal;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="one">
+        <div class="container" id="display">0</div>
+        <br>
+        <table>
+            <tr>
+                <td><button onclick="clearDisplay()">C</button></td>
+                <td><button onclick="Display('%')">%</button></td>
+                <td><button onclick="backspace()">&larr;</button></td>
+                <td><button onclick="Display('/')">/</button></td>  
+            </tr>
+            <tr>
+                <td><button onclick="Display('7')">7</button></td>
+                <td><button onclick="Display('8')">8</button></td>
+                <td><button onclick="Display('9')">9</button></td>
+                <td><button onclick="Display('*')">*</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="Display('4')">4</button></td>
+                <td><button onclick="Display('5')">5</button></td>
+                <td><button onclick="Display('6')">6</button></td>
+                <td><button onclick="Display('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="Display('1')">1</button></td>
+                <td><button onclick="Display('2')">2</button></td>
+                <td><button onclick="Display('3')">3</button></td>
+                <td><button onclick="Display('+')">+</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="Display('00')">00</button></td>
+                <td><button onclick="Display('0')">0</button></td>
+                <td><button onclick="Display('.')">.</button></td>
+                <td><button onclick="Result()">=</button></td>
+            </tr>
+        </table>        
+    </div>
+    <script>
+        let displayElement = document.getElementById('display');
+        let currentInput = '';
+
+        function clearDisplay() {
+            currentInput = '';
+            displayElement.textContent = '0';
+        }
+
+        function Display(value) {
+            if (currentInput == '0' && value !== '.') {
+                currentInput = value;
+            } else {
+                currentInput += value;
+            }
+            displayElement.textContent = currentInput;
+        }
+
+        function backspace() {
+            currentInput = currentInput.slice(0, -1);
+            displayElement.textContent = currentInput || '0';
+        }
+
+        function Result() {
+            try {
+                currentInput = eval(currentInput).toString();
+                displayElement.textContent = currentInput;
+            } catch (error) {
+                displayElement.textContent = 'Error';
+                currentInput = '';
+            }
+        }
+    </script>
+</body>
+</html>
