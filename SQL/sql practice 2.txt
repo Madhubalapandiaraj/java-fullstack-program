@@ -1,0 +1,164 @@
+sql 2
+
+---------------------------------------------------------------------------------------------------------------------------------------
+SQL Relational Operators
+---------------------------------------------------------------------------------------------------------------------------------------
+
+ CREATE TABLE tbl_emp (
+       eid INT PRIMARY KEY,
+       ename VARCHAR(100),
+       esalary INT
+   );
+Tbl_emp
+eid	ename	esalary
+empty
+
+INSERT INTO tbl_emp (eid, ename, esalary) VALUES
+(1, 'abc', 2000),
+(2, 'def', 7000),
+(3, 'ghi', 4000),
+(4, 'jkl', 7000),
+(5,'mno',6000);
+
+Tbl_emp
+eid	ename	esalary
+1	abc	2000
+2	def	7000
+3	ghi	4000
+4	jkl	7000
+5	mno	6000
+
+select * from Tbl_emp where esalary between 2000 and 6000;
+eid	ename	esalary
+1	abc	2000
+3	ghi	4000
+5	mno	6000
+
+select * from Tbl_emp where esalary not between 2000 and 6000;
+eid	ename	esalary
+2	def	7000
+4	jkl	7000
+
+select * from Tbl_emp where esalary >=4000 and eid in (1,3);
+eid	ename	esalary
+3	ghi	4000
+
+select * from Tbl_emp where esalary >=4000 or eid in (1,3);
+eid	ename	esalary
+1	abc	2000
+2	def	7000
+3	ghi	4000
+4	jkl	7000
+5	mno	6000
+
+select * from Tbl_emp where ename like 'a%';(enter the first letter)
+eid	ename	esalary
+1	abc	2000
+
+select * from Tbl_emp where ename like '%o';(enter last letter)
+eid	ename	esalary
+5	mno	6000
+
+select * from Tbl_emp where ename like '%k%';(enter the center value)
+eid	ename	esalary
+4	jkl	7000
+---------------------------------------------------------------------------------------------------------------------------------
+Order By Clause
+---------------------------------------------------------------------------------------------------------------------------------
+insert into Tbl_emp(eid,esalary)values(501,2000);
+eid	ename	esalary
+1	abc	2000
+2	def	7000
+3	ghi	4000
+4	jkl	7000
+5	mno	6000
+501		2000
+
+select *from tbl_emp where ename is null;
+eid	ename	esalary
+501		2000
+
+select * from tbl_emp order by eid;
+eid	ename	esalary
+1	abc	2000
+2	def	7000
+3	ghi	4000
+4	jkl	7000
+5	mno	6000
+501		2000
+
+select * from tbl_emp order by eid desc;
+
+eid	ename	esalary
+501		2000
+5	mno	6000
+4	jkl	7000
+3	ghi	4000
+2	def	7000
+1	abc	2000
+
+select * from tbl_emp order by eid ,ename desc;
+eid	ename	esalary
+1	abc	2000
+2	def	7000
+3	ghi	4000
+4	jkl	7000
+5	mno	6000
+501		2000
+-------------------------------------------------------------------------------------------------------------------------------
+DDL
+-------------------------------------------------------------------------------------------------------------------------------
+ALTER table tbl_emp add doj data;
+eid	ename	esalary	doj
+1	abc	2000	
+2	def	7000	
+3	ghi	4000	
+4	jkl	7000	
+5	mno	6000	
+501		2000	
+
+update tbl_emp set doj=sysdate where eid=3;
+eid	ename	esalary	doj
+1	abc	2000	
+2	def	7000	
+3	ghi	4000	07-aug-24
+4	jkl	7000	
+5	mno	6000	
+501		2000	
+
+update tbl_emp set doj='05-aug-24'where eid=3;
+eid	ename	esalary	doj
+1	abc	2000	
+2	def	7000	
+3	ghi	4000	05-aug-24
+4	jkl	7000	
+5	mno	6000	
+501		2000	
+
+alter table tbl_emp drop column doj;
+eid	ename	esalary
+1	abc	2000
+2	def	7000
+3	ghi	4000
+4	jkl	7000
+5	mno	6000
+501		2000
+
+alter table tbl_emp modify esalary number(2);
+table altered.
+
+desc tbl_employee;
+
+alter table tbl_emp rename column esalary to emp_salar;
+eid	ename	emp_salar
+1	abc	2000
+2	def	7000
+3	ghi	4000
+4	jkl	7000
+5	mno	6000
+501		2000
+
+rename Tbl_emp to tbl_emp;
+
+drop table Tbl_emp;
+

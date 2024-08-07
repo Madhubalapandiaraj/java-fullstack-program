@@ -1,0 +1,118 @@
+sql
+----------
+
+create table tbl_employee(
+  eid number(5),
+  ename varchar(20),
+  esalary number(5)
+);
+Tbl_employee
+eid	ename	esalary
+
+
+insert into Tbl_employee values(
+101,'madhu',2000);
+Tbl_employee
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+
+select *from tbl_employee;
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+
+select eid,esalary from Tbl_employee;
+eid	esalary
+101	2000
+101	2000
+
+insert into Tbl_employee values(102,'abc',6000);
+Tbl_employee
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+102	abc	6000
+
+commit;
+
+select eid from Tbl_employee;
+eid
+101
+101
+102
+
+select distinct eid from Tbl_employee;
+eid
+101
+102
+
+select * from Tbl_employee;
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+102	abc	6000
+
+select * from Tbl_employee where eid=101;
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+
+select * from Tbl_employee where ename='madhu';
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+
+select * from Tbl_employee where esalary>2000;
+eid	ename	esalary
+102	abc	6000
+
+select * from Tbl_employee where ename <> 'madhu';
+eid	ename	esalary
+102	abc	6000
+
+select * from Tbl_employee;
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+102	abc	6000
+
+update Tbl_employee set esalary=7000 where eid=102;
+Tbl_employee
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+102	abc	7000
+
+select * from Tbl_employee;
+eid	ename	esalary
+101	madhu	2000
+101	madhu	2000
+102	abc	7000
+
+commit;
+
+update Tbl_employee set esalary=6000,ename='efg'where eid=101;
+Tbl_employee
+eid	ename	esalary
+101	efg	6000
+101	efg	6000
+102	abc	7000
+
+delete from tbl_employee where eid=101;
+Tbl_employee
+eid	ename	esalary
+102	abc	7000
+
+select * from Tbl_employee where eid in (102);
+eid	ename	esalary
+102	abc	7000
+
+select * from Tbl_employee where eid not in (102);
+if there is any lefted the lefted id is shown
+
+
+
+
+
+
