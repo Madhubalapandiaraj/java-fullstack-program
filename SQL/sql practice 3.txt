@@ -1,118 +1,240 @@
-sql
-----------
-
-create table tbl_employee(
-  eid number(5),
-  ename varchar(20),
-  esalary number(5)
-);
-Tbl_employee
-eid	ename	esalary
+sql practice 4
+---------------
 
 
-insert into Tbl_employee values(
-101,'madhu',2000);
-Tbl_employee
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
+INSERT:
+~~~~~~~~~
 
-select *from tbl_employee;
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
+SQL> INSERT INTO tbl_emp VALUES(2, 'def', 7000,10);
 
-select eid,esalary from Tbl_employee;
-eid	esalary
-101	2000
-101	2000
+1 row created.
 
-insert into Tbl_employee values(102,'abc',6000);
-Tbl_employee
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
-102	abc	6000
+SQL> INSERT INTO tbl_emp VALUES(3, 'ghi', 4000,20);
 
-commit;
+1 row created.
 
-select eid from Tbl_employee;
-eid
-101
-101
-102
+SQL> INSERT INTO tbl_emp VALUES(4, 'jkl', 7000,20);
 
-select distinct eid from Tbl_employee;
-eid
-101
-102
+1 row created.
 
-select * from Tbl_employee;
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
-102	abc	6000
+SQL>  INSERT INTO tbl_emp VALUES(5,'mno',6000,30);
 
-select * from Tbl_employee where eid=101;
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
+1 row created.
 
-select * from Tbl_employee where ename='madhu';
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
 
-select * from Tbl_employee where esalary>2000;
-eid	ename	esalary
-102	abc	6000
+============================================================================================================================================================================================
 
-select * from Tbl_employee where ename <> 'madhu';
-eid	ename	esalary
-102	abc	6000
+   GROUP BY &HAVING CLAUSE:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-select * from Tbl_employee;
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
-102	abc	6000
 
-update Tbl_employee set esalary=7000 where eid=102;
-Tbl_employee
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
-102	abc	7000
+SQL> COLUMN EID FORMAT 999999
+SQL> COLUMN ENAME FORMAT A10
+SQL> COLUMN ESALARY FORMAT 999999
+SQL> COLUMN DNO FORMAT 9999
+SQL> SELECT EID, ENAME, ESALARY, DNO FROM tbl_emp;
 
-select * from Tbl_employee;
-eid	ename	esalary
-101	madhu	2000
-101	madhu	2000
-102	abc	7000
+    EID ENAME      ESALARY   DNO
+------- ---------- ------- -----
+      2 def           7000    10
+      3 ghi           4000    20
+      4 jkl           7000    20
+      5 mno           6000    30
 
-commit;
+SQL> select dno,count(*) from tbl_emp group by dno;
 
-update Tbl_employee set esalary=6000,ename='efg'where eid=101;
-Tbl_employee
-eid	ename	esalary
-101	efg	6000
-101	efg	6000
-102	abc	7000
+  DNO   COUNT(*)
+----- ----------
+   30          1
+   20          2
+   10          1
 
-delete from tbl_employee where eid=101;
-Tbl_employee
-eid	ename	esalary
-102	abc	7000
+SQL> select dno,count(*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_emp group by dno;
 
-select * from Tbl_employee where eid in (102);
-eid	ename	esalary
-102	abc	7000
+  DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+----- ---------- ------------ ------------ ------------ ------------
+   30          1         6000         6000         6000         6000
+   20          2        11000         5500         4000         7000
+   10          1         7000         7000         7000         7000
 
-select * from Tbl_employee where eid not in (102);
-if there is any lefted the lefted id is shown
+SQL> select dno,count(*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_emp group by dno order by dno;
+
+  DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+----- ---------- ------------ ------------ ------------ ------------
+   10          1         7000         7000         7000         7000
+   20          2        11000         5500         4000         7000
+   30          1         6000         6000         6000         6000
+
+SQL> select dno,count(*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_emp group by dno having min(esalary)> 2000 order by dno;
+
+  DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+----- ---------- ------------ ------------ ------------ ------------
+   10          1         7000         7000         7000         7000
+   20          2        11000         5500         4000         7000
+   30          1         6000         6000         6000         6000
+
+============================================================================================================================================================================================
+GROUP FUNCTIONS IN SQL:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+SQL> create table tb_student(reg_n0 number(5) primary key,
+  2   student_name varchar2(20) not null,
+  3  student_age number(3) check(student_age>0),
+  4   student_email varchar(20) unique,
+  5  student_location varchar2(20) default 'Erode');
+
+Table created.
 
 
 
 
+SQL>  insert into tb_student (reg_n0,student_name,student_age,student_email) values(101,'madhu','20','madhu@gmail.com');
+
+1 row created.
 
 
+SQL>  select * from tb_student;
+
+    REG_N0 STUDENT_NAME         STUDENT_AGE STUDENT_EMAIL
+---------- -------------------- ----------- --------------------
+STUDENT_LOCATION
+--------------------
+       101 madhu                         20 madhu@gmail.com
+Erode
+
+=========================================================================================================================================================================================
+
+CONSTRAINTS IN SQL:
+~~~~~~~~~~~~~~~~~~~~~
+
+
+SQL> create table department(dno number(5) primary key, dname varchar2(20));
+
+Table created.
+
+SQL> create table employee(eid number(5) primary key,ename varchar2(20),esalary number(5),dno number(5),foreign key(dno) references department(dno));
+
+Table created.
+
+SQL>  insert into department(10,'madhu');
+ insert into department(10,'madhu')
+                        *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into department values(10,'cse');
+
+1 row created.
+
+SQL> insert into employee values(101,'madhu',2000,10);
+
+1 row created.
+
+SQL> select * from employee;
+
+    EID ENAME      ESALARY   DNO
+------- ---------- ------- -----
+    101 madhu         2000    10
+
+SQL> select * from department;
+
+  DNO DNAME
+----- --------------------
+   10 cse
+===========================================================================================================================================================================================
+VIEWS IN SQL:
+~~~~~~~~~~~~~~~
+
+
+SQL> select * from tbl_emp;
+
+    EID ENAME      ESALARY   DNO
+------- ---------- ------- -----
+      2 def           7000    10
+      3 ghi           4000    20
+      4 jkl           7000    20
+      5 mno           6000    30
+
+SQL> create view myview as select * from tbl_emp where dno=10;
+
+View created.
+
+SQL> select * from myview;
+
+    EID ENAME      ESALARY   DNO
+------- ---------- ------- -----
+      2 def           7000    10
+
+SQL> update myview set esalary=8000 where eid=2;
+
+1 row updated.
+
+SQL> select * from myview;
+
+    EID ENAME      ESALARY   DNO
+------- ---------- ------- -----
+      2 def           8000    10
+
+SQL> select * from tbl_emp;
+
+    EID ENAME      ESALARY   DNO
+------- ---------- ------- -----
+      2 def           8000    10
+      3 ghi           4000    20
+      4 jkl           7000    20
+      5 mno           6000    30
+
+SQL> drop view myview;
+
+View dropped.
+============================================================================================================================================================================================
+
+ALIAS IN SQL:
+~~~~~~~~~~~~~~
+
+SQL> select eid,ename from tbl_emp;
+
+    EID ENAME
+------- ----------
+      2 def
+      3 ghi
+      4 jkl
+      5 mno
+
+SQL> select eid as "Employee Id",ename "Employee Name" from tbl_employee;
+
+Employee Id
+-----------
+Employee Name
+--------------------------------------------------------------------------------
+          3
+ghi
+
+          4
+jkl
+
+          5
+mno
+
+
+SQL> SELECT dno,count(*) from tbl_emp group by dno;
+
+  DNO   COUNT(*)
+----- ----------
+   30          1
+   20          2
+   10          1
+
+SQL> select dno,count(*) as "Total No Of Employees" from tbl_emp group by dno;
+
+  DNO Total No Of Employees
+----- ---------------------
+   30                     1
+   20                     2
+   10                     1
+
+
+********************************************************************************************************************************************************************************************
